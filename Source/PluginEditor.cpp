@@ -14,7 +14,8 @@ OsciladorSimplesAudioProcessorEditor::OsciladorSimplesAudioProcessorEditor(Oscil
     : AudioProcessorEditor(&p), audioProcessor(p)
 {
     // Tamanho da janela
-    setSize(500, 350);
+    setSize(720, 360);
+    setLookAndFeel(&customLF);
 
     // --- 1. CONFIGURAR MENU DE ONDA ---
     waveTypeBox.addItem("Senoide (Sine)", 1);
@@ -28,8 +29,11 @@ OsciladorSimplesAudioProcessorEditor::OsciladorSimplesAudioProcessorEditor(Oscil
     waveAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ComboBoxAttachment>(audioProcessor.apvts, "WAVE", waveTypeBox);
 
     // --- 2. CONFIGURAR FREQUÊNCIA ---
-    frequencySlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
-    frequencySlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
+    // FREQUÊNCIA (knob)
+    frequencySlider.setSliderStyle(juce::Slider::Rotary);
+    frequencySlider.setTextBoxStyle(juce::Slider::NoTextBox, false, 0, 0);
+    frequencySlider.setLookAndFeel(&customLF);
+    customLF.setFrequencySlider(&frequencySlider);
     addAndMakeVisible(frequencySlider);
 
     freqAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "FREQ", frequencySlider);
@@ -37,37 +41,43 @@ OsciladorSimplesAudioProcessorEditor::OsciladorSimplesAudioProcessorEditor(Oscil
     // --- 3. CONFIGURAR GANHO (VOLUME) ---
     gainSlider.setSliderStyle(juce::Slider::LinearVertical);
     gainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
+    gainSlider.setLookAndFeel(&customLF);
     addAndMakeVisible(gainSlider);
 
     gainAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "GAIN", gainSlider);
 
     // --- 4. CONFIGURAR PAN ---
     panSlider.setSliderStyle(juce::Slider::Rotary);
-    panSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
+    panSlider.setTextBoxStyle(juce::Slider::NoTextBox, false, 0, 0);
+    panSlider.setLookAndFeel(&customLF);
+    customLF.setPanSlider(&panSlider);
     addAndMakeVisible(panSlider);
 
     panAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts, "PAN", panSlider);
 
     // --- RÓTULOS (LABELS) ---
-    addAndMakeVisible(waveLabel); waveLabel.setText("Tipo de Onda", juce::dontSendNotification);
+    addAndMakeVisible(waveLabel); waveLabel.setText("TIPO DE ONDA", juce::dontSendNotification);
     waveLabel.attachToComponent(&waveTypeBox, false);
     waveLabel.setJustificationType(juce::Justification::centred);
 
-    addAndMakeVisible(freqLabel); freqLabel.setText("Frequencia (Hz)", juce::dontSendNotification);
+    addAndMakeVisible(freqLabel); freqLabel.setText("FREQUENCIA (Hz)", juce::dontSendNotification);
     freqLabel.attachToComponent(&frequencySlider, false);
     freqLabel.setJustificationType(juce::Justification::centred);
 
-    addAndMakeVisible(gainLabel); gainLabel.setText("Volume", juce::dontSendNotification);
+    addAndMakeVisible(gainLabel); gainLabel.setText("VOLUME", juce::dontSendNotification);
     gainLabel.attachToComponent(&gainSlider, false);
     gainLabel.setJustificationType(juce::Justification::centred);
 
-    addAndMakeVisible(panLabel); panLabel.setText("Pan (Esq/Dir)", juce::dontSendNotification);
+    addAndMakeVisible(panLabel); panLabel.setText("PAN (ESQ/DIR)", juce::dontSendNotification);
     panLabel.attachToComponent(&panSlider, false);
     panLabel.setJustificationType(juce::Justification::centred);
 }
 
-OsciladorSimplesAudioProcessorEditor::~OsciladorSimplesAudioProcessorEditor()
+OsciladorSimplesAudioProcessorEditor::~OsciladorSimplesAudioProcessorEditor() 
 {
+    frequencySlider.setLookAndFeel(nullptr);
+    panSlider.setLookAndFeel(nullptr);
+    setLookAndFeel(nullptr);
 }
 
 // ==============================================================================
@@ -75,16 +85,12 @@ OsciladorSimplesAudioProcessorEditor::~OsciladorSimplesAudioProcessorEditor()
 // ==============================================================================
 void OsciladorSimplesAudioProcessorEditor::paint(juce::Graphics& g)
 {
+    background = juce::ImageCache::getFromMemory(BinaryData::background_png, BinaryData::background_pngSize);
     // Fundo cinza escuro estilo "rack"!
-    g.fillAll(juce::Colours::darkgrey.darker(0.2f));
-
-    g.setColour(juce::Colours::white);
-    g.setFont(30.0f);
-    g.drawFittedText("OSCILADOR HUMILDE", getLocalBounds().removeFromTop(50), juce::Justification::centred, 1);
+    g.drawImageWithin(background, 0, 0, getWidth(), getHeight(), juce::RectanglePlacement::stretchToFit);
 
     g.setColour(juce::Colours::grey);
     g.setFont(14.0f);
-    g.drawFittedText("v1.0 - Feito no Visual Studio", getLocalBounds().removeFromBottom(30), juce::Justification::centred, 1);
 }
 
 // ==============================================================================
@@ -94,11 +100,11 @@ void OsciladorSimplesAudioProcessorEditor::resized()
 {
     // Define a posição exata (X, Y, Largura, Altura)
 
-    waveTypeBox.setBounds(50, 80, 150, 30);
+    waveTypeBox.setBounds(30, 110, 150, 30);
 
-    frequencySlider.setBounds(250, 80, 250, 250);
+    frequencySlider.setBounds(570, 110, 110, 110);
 
-    gainSlider.setBounds(50, 150, 60, 150);
+    gainSlider.setBounds(68, 170, 80, 160);
 
-    panSlider.setBounds(130, 200, 80, 80);
+    panSlider.setBounds(570, 240, 110, 110);
 }
