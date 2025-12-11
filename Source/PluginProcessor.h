@@ -1,6 +1,6 @@
 /*
   ==============================================================================
-    PluginProcessor.h ----- Aqui é onde você declara classes, inicializa bibliotecas externas, é basicamente
+    PluginProcessor.h ----- Aqui Ã© onde vocÃª declara classes, inicializa bibliotecas externas, Ã© basicamente
     a biblioteca que faz o PluginProcessor.cpp funcionar.
   ==============================================================================
 */
@@ -51,12 +51,12 @@ public:
     void getStateInformation(juce::MemoryBlock& destData) override;
     void setStateInformation(const void* data, int sizeInBytes) override;
 
-    // --- ADICIONADO: O SISTEMA DE PARÂMETROS (APVTS) --- Declaração de classe básica
+    // --- ADICIONADO: O SISTEMA DE PARÃ‚METROS (APVTS) --- DeclaraÃ§Ã£o de classe bÃ¡sica
     juce::AudioProcessorValueTreeState apvts;
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 
 private:
-    // --- ADICIONADO: O MOTOR DO OSCILADOR --- Declaração de classe básica
+    // --- ADICIONADO: O MOTOR DO OSCILADOR --- DeclaraÃ§Ã£o de classe bÃ¡sica
     Oscillator meuOscilador;
 
     //==============================================================================

@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-  É a "biblioteca" do PluginEditor, essecial pra versão cpp funcionar.
+  	a "biblioteca" do PluginEditor, essecial pra verso cpp funcionar.
 
   ==============================================================================
 */
@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "CustomLookAndFeel.h"
 
 //==============================================================================
 /**
@@ -25,8 +26,12 @@ public:
     void resized() override;
 
 private:
-    // Esta referência é fornecida como uma maneira rápida para o seu editor acessar o objeto processor que o criou.
+    // Esta referncia 	 fornecida como uma maneira rpida para o seu editor acessar o objeto processor que o criou.
+    
     OsciladorSimplesAudioProcessor& audioProcessor;
+
+    juce::Image background;
+    CustomLookAndFeel customLF;
 
     // Attachments:
     std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> waveAttachment;

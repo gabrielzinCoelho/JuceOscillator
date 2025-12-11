@@ -3,6 +3,14 @@
 <JUCERPROJECT id="HMcO0C" name="OsciladorSimples" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="ag5Wah" name="OsciladorSimples">
+    <GROUP id="{D885BAB3-8011-12B0-8AA1-A473387F75D0}" name="Assets">
+      <FILE id="fcZmsm" name="background.png" compile="0" resource="1" file="Source/Assets/background.png"/>
+      <FILE id="skMpVz" name="knob_base.png" compile="0" resource="1" file="Source/Assets/knob_base.png"/>
+      <FILE id="li9Q9m" name="slider_base.png" compile="0" resource="1" file="Source/Assets/slider_base.png"/>
+      <FILE id="bUlQI9" name="slider_lid.png" compile="0" resource="1" file="Source/Assets/slider_lid.png"/>
+      <FILE id="GRdYUf" name="Organix.otf" compile="0" resource="1" file="Source/Assets/Organix.otf"/>
+      <FILE id="lEFTYD" name="knob_slider.png" compile="0" resource="1" file="Source/Assets/knob_slider.png"/>
+    </GROUP>
     <GROUP id="{7E8B702A-14AE-7EDF-5787-A04C4186AEA0}" name="Source">
       <FILE id="knE5a2" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
@@ -10,6 +18,8 @@
             file="Source/PluginProcessor.h"/>
       <FILE id="eUrgWO" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
+      <FILE id="A0wTCp" name="CustomLookAndFeel.h" compile="0" resource="0"
+            file="Source/CustomLookAndFeel.h"/>
       <FILE id="ZMT7kd" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
   </MAINGROUP>

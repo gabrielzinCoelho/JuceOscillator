@@ -1,41 +1,90 @@
-# Este é um plugin VST3 feito em C++ com JUCE. Um Oscilador "Modular" (que serve tanto como gerador de teste, quanto como coração de um possível sintetizador), contendo 4 controles essenciais.
+# 🎵 Oscilador Simples - Plugin VST3
 
-## 1. Seletor de Tipo de Onda (Waveform Select)
+Um plugin de áudio VST3 desenvolvido em C++ utilizando o framework JUCE. Este oscilador modular serve tanto como gerador de teste de áudio quanto como base para um sintetizador completo.
 
-O usuário precisa escolher a "cor" do som.
+## 📋 Sobre o Projeto
 
-Controle Visual: Um Menu (ComboBox) ou um Knob rotativo com 4 posições.
+Este projeto implementa um oscilador de áudio digital com controles essenciais para geração e manipulação de ondas sonoras. Ideal para aprendizado de síntese de áudio, teste de equipamentos e desenvolvimento de sintetizadores.
 
-Opções:
+## ✨ Funcionalidades
 
-Senoide (Sine): Som puro, suave (bom para sub-grave).
+### 1. 🎼 Seletor de Tipo de Onda (Waveform Select)
 
-Dente de Serra (Sawtooth): Som rasgado, brilhante (bom para cordas/leads).
+Permite escolher a "cor" ou timbre do som gerado através de diferentes formas de onda.
 
-Quadrada (Square): Som "oco", videogame (bom para baixos).
+**Controle Visual:** Menu dropdown (ComboBox) ou knob rotativo com 4 posições
 
-Triângulo (Triangle): Meio termo entre Seno e Serra.
+**Opções Disponíveis:**
+- **Senoide (Sine):** Som puro e suave, ideal para sub-graves e tons fundamentais
+- **Dente de Serra (Sawtooth):** Som rasgado e brilhante, perfeito para cordas sintéticas e leads
+- **Quadrada (Square):** Som "oco" característico de videogames clássicos, ótimo para baixos
+- **Triângulo (Triangle):** Meio termo entre senoide e dente de serra, som mais suave
 
-## 2. Controle de Frequência (Frequency)
+### 2. 🎚️ Controle de Frequência (Frequency)
 
-Já que esse plugin não vai receber notas de um teclado musical (MIDI) por enquanto, precisamos de um botão para "afinar" o oscilador manualmente.
+Permite ajustar manualmente a frequência do oscilador. Como este plugin não processa MIDI por enquanto, a frequência é controlada diretamente.
 
-Controle Visual: Um Knob grande ou Slider.
+**Controle Visual:** Knob grande ou slider horizontal
 
-Faixa: De 20 Hz (grave profundo) a 20.000 Hz (agudo extremo).
+**Faixa de Operação:** 20 Hz (grave profundo) até 20.000 Hz (agudo extremo)
 
-## 3. Volume Geral (Master Gain)
+### 3. 🔊 Volume Geral (Master Gain)
 
-Osciladores digitais puros são matematicamente "perfeitos" e, por isso, muito altos (batem em 0dB). Precisamos de um controle para atenuar.
+Controla o nível de saída do oscilador. Osciladores digitais geram sinais em amplitude máxima (0 dB), sendo necessário atenuação para uso prático.
 
-Controle Visual: Um Knob pequeno ou Fader vertical.
+**Controle Visual:** Knob pequeno ou fader vertical
 
-Faixa: De -Infinito (mudo) a 0 dB (volume máximo).
+**Faixa de Operação:** -∞ dB (mudo) até 0 dB (volume máximo)
 
-## 4. Panorâmica (Pan) - O "Bônus"
+### 4. ◀️▶️ Panorâmica (Pan)
 
-Adiciona a capacidade de jogar o som para a esquerda ou direita
+Controla o posicionamento do som no campo estéreo, permitindo direcionar o áudio para os canais esquerdo ou direito.
 
-Controle Visual: Knob centralizado.
+**Controle Visual:** Knob centralizado
 
-Faixa: Esquerda (-100%) a Direita (+100%).
+**Faixa de Operação:** -100% (totalmente à esquerda) até +100% (totalmente à direita)
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Linguagem:** C++
+- **Framework:** JUCE (plataforma para desenvolvimento de plugins de áudio)
+- **Formato:** VST3 (Virtual Studio Technology)
+
+## 📦 Estrutura do Projeto
+
+```
+JuceOscillator/
+├── Source/
+│   ├── Oscillator.h          # Implementação do motor do oscilador
+│   ├── PluginProcessor.cpp   # Processamento de áudio
+│   ├── PluginProcessor.h     # Declarações do processador
+│   ├── PluginEditor.cpp      # Interface gráfica
+│   └── PluginEditor.h        # Declarações da interface
+├── OsciladorSimples.jucer    # Arquivo de projeto JUCE
+└── README.md                 # Este arquivo
+```
+
+## 🚀 Como Usar
+
+1. Abra o arquivo `.jucer` no Projucer (JUCE)
+2. Configure o ambiente de desenvolvimento (Visual Studio, Xcode, etc.)
+3. Compile o projeto
+4. O plugin VST3 será gerado na pasta de saída
+5. Copie o plugin para a pasta de plugins do seu DAW
+6. Carregue o plugin em uma faixa de áudio no seu DAW
+
+## 🎯 Casos de Uso
+
+- **Geração de tom de teste** para calibração de equipamentos de áudio
+- **Base para sintetizadores** mais complexos
+- **Aprendizado** de síntese sonora e processamento de áudio digital
+- **Efeitos sonoros** para jogos e multimídia
+- **Sound design** e experimentação sonora
+
+## 📝 Licença
+
+Consulte o arquivo LICENSE para mais informações.
+
+## 🤝 Contribuições
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.

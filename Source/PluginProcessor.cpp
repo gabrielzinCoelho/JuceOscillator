@@ -1,6 +1,6 @@
 /*
   ==============================================================================
-    PluginProcessor.cpp - O CÈrebro do Plugin --- … basicamente a "main" do puglin
+    PluginProcessor.cpp - O C√©rebro do Plugin --- √â basicamente a "main" do puglin
   ==============================================================================
 */
 
@@ -8,7 +8,7 @@
 #include "PluginEditor.h"
 
 // ==============================================================================
-// 1. AQUI CRIAMOS OS BOT’ES NA MEM”RIA
+// 1. AQUI CRIAMOS OS BOT√ïES NA MEM√ìRIA
 // ==============================================================================
 juce::AudioProcessorValueTreeState::ParameterLayout OsciladorSimplesAudioProcessor::createParameterLayout()
 {
@@ -17,7 +17,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout OsciladorSimplesAudioProcess
     // Tipo de Onda (0 a 3)
     params.push_back(std::make_unique<juce::AudioParameterInt>("WAVE", "Wave Type", 0, 3, 0));
 
-    // FrequÍncia (20Hz a 20kHz)
+    // Frequ√™ncia (20Hz a 20kHz)
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FREQ", "Frequency",
         juce::NormalisableRange<float>(20.0f, 20000.0f, 1.0f, 0.25f), 440.0f));
 
@@ -31,7 +31,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout OsciladorSimplesAudioProcess
 }
 
 // ==============================================================================
-// 2. O CONSTRUTOR (InicializaÁ„o)
+// 2. O CONSTRUTOR (Inicializa√ß√£o)
 // ==============================================================================
 OsciladorSimplesAudioProcessor::OsciladorSimplesAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -43,7 +43,7 @@ OsciladorSimplesAudioProcessor::OsciladorSimplesAudioProcessor()
         .withOutput("Output", juce::AudioChannelSet::stereo(), true)
 #endif
     ),
-    // LIGA O SISTEMA DE PAR¬METROS
+    // LIGA O SISTEMA DE PAR√ÇMETROS
     apvts(*this, nullptr, "PARAMETERS", createParameterLayout())
 #endif
 {
@@ -54,7 +54,7 @@ OsciladorSimplesAudioProcessor::~OsciladorSimplesAudioProcessor()
 }
 
 // ==============================================================================
-// 3. PREPARAR O ¡UDIO
+// 3. PREPARAR O √ÅUDIO
 // ==============================================================================
 void OsciladorSimplesAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
@@ -86,7 +86,7 @@ bool OsciladorSimplesAudioProcessor::isBusesLayoutSupported(const BusesLayout& l
 #endif
 
 // ==============================================================================
-// 4. PROCESSAR O ¡UDIO (O LOOP PRINCIPAL)
+// 4. PROCESSAR O √ÅUDIO (O LOOP PRINCIPAL)
 // ==============================================================================
 void OsciladorSimplesAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
@@ -98,7 +98,7 @@ void OsciladorSimplesAudioProcessor::processBlock(juce::AudioBuffer<float>& buff
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear(i, 0, buffer.getNumSamples());
 
-    // --- LER OS BOT’ES ---
+    // --- LER OS BOT√ïES ---
     int waveType = (int)*apvts.getRawParameterValue("WAVE");
     float frequency = *apvts.getRawParameterValue("FREQ");
     float gain = *apvts.getRawParameterValue("GAIN");
@@ -133,7 +133,7 @@ void OsciladorSimplesAudioProcessor::processBlock(juce::AudioBuffer<float>& buff
 }
 
 // ==============================================================================
-// FUN«’ES PADR√O -- N„o modifiquei muito(Tharlon)
+// FUN√á√ïES PADR√ÉO -- N√£o modifiquei muito(Tharlon)
 // ==============================================================================
 bool OsciladorSimplesAudioProcessor::hasEditor() const
 {
