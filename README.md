@@ -1,4 +1,4 @@
-# Para um Oscilador "Modular" (que serve tanto como gerador de teste, quanto como coração de um possível sintetizador), precisamos de 4 controles essenciais.
+# Este é um plugin VST3 feito em C++ com JUCE. Um Oscilador "Modular" (que serve tanto como gerador de teste, quanto como coração de um possível sintetizador), contendo 4 controles essenciais.
 
 ## 1. Seletor de Tipo de Onda (Waveform Select)
 
