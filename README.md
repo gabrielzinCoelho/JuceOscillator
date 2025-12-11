@@ -85,6 +85,5 @@ JuceOscillator/
 
 Consulte o arquivo LICENSE para mais informações.
 
-## 🤝 Contribuições
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
+## 🤝 Autores
+Tharlon Eduardo, Gabriel Coelho Costa, Isac Gonçalves Cunha, Otávio Sbampato
